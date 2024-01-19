@@ -1,0 +1,45 @@
+# Ignore everything.
+/*
+*/*
+
+# Add these files/directories and subdirectories.
+
+# git specific configs.
+!.gitignore
+
+# gitlab ci/cd specific configs.
+!.gitlab-ci.yml
+
+# Helper scripts specific configs.
+!helper-scripts
+!helper-scripts/generate_version_id.sh
+!helper-scripts/release_version_id.sh
+!mkdocs-serve.sh
+
+# package manager specific configs.
+!poetry.lock
+!pyproject.toml
+
+# Development environment specific configs.
+# Currently only for vscode specific.
+!.devcontainer
+!.devcontainer/devcontainer.json
+!.devcontainer/Dockerfile
+!.devcontainer/.dockerignore
+!.devcontainer/README.devcontainer.md
+
+# README.
+!README.md
+
+# mkdocs specific files
+# .md .png .svg etc..
+!mkdocs.yml
+!docs
+!docs/**
+!docs/**/*.md
+!docs/**/*.png
+!docs/**/*.svg
+
+# Ignore pyc files.
+ __pycache__/
+*.py[cod]

@@ -1,0 +1,97 @@
+image: alpine:3.19.0
+
+workflow:
+   rules:
+      - if: "$CI_COMMIT_BRANCH"
+
+stages:
+  - get-version
+  - deploy
+  - create-tag
+
+get-version:
+   stage: get-version
+   script:
+      - |
+         apk update
+         apk add --no-cache git
+      - sh ./helper-scripts/generate_version_id.sh > version_number.txt
+      - echo "New version number is - `cat version_number.txt`"
+   artifacts:
+      when: always
+      paths:
+         - version_number.txt
+      expire_in: 1 day
+
+.mkdocs-prepare:
+   image: debian:12.4
+   before_script:
+      - export RELEASE_VERSION_ID=$(cat version_number.txt)
+      - |
+         apt-get update
+         apt-get install -y --no-install-recommends --no-install-suggests git curl wget tar zip bzip2 xz-utils unzip ca-certificates git python3-pip python3-dev
+      - |
+         pip install --break-system-packages poetry==1.7.1
+         poetry install
+
+pages-review:
+   extends: .mkdocs-prepare
+   stage: deploy
+   script:
+      - poetry run mkdocs build --strict --verbose --site-dir review
+      - echo "Pages artifacts deployed at - https://${CI_PAGES_DOMAIN}/${CI_PROJECT_NAMESPACE}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts/review/index.html"
+   needs:
+      - job: "get-version"
+        artifacts: true
+   artifacts:
+      when: always
+      paths:
+         - version_number.txt
+         - review
+      expire_in: 1 day
+   except:
+      - /^v+\d+\.+\d+\.+\d+$/
+      - main
+
+pages:
+   extends: .mkdocs-prepare
+   stage: deploy
+   script:
+      - poetry run mkdocs build --strict --verbose --site-dir public
+      - echo "Pages deployed at - https://${CI_PAGES_DOMAIN}/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/"
+   needs:
+      - job: "get-version"
+        artifacts: true
+   artifacts:
+      when: always
+      paths:
+         - version_number.txt
+         - public
+      expire_in: 1 day
+   environment:
+     name: production
+   only:
+      - /^v+\d+\.+\d+\.+\d+$/
+      - main
+
+create-tag:
+   stage: create-tag
+   before_script:
+      - export RELEASE_VERSION_ID=$(cat version_number.txt)
+   script:
+      - |
+         apk update
+         apk add --no-cache curl
+      - echo "Creating tag - ${RELEASE_VERSION_ID}"
+      - sh ./helper-scripts/release_version_id.sh "${RELEASE_VERSION_ID}" "${PROJECT_ACCESS_TOKEN}"
+   needs:
+      - job: "pages"
+        artifacts: true
+   artifacts:
+      when: always
+      paths:
+         - version_number.txt
+      expire_in: 1 day
+   only:
+      - /^v+\d+\.+\d+\.+\d+$/
+      - main

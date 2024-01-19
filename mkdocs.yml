@@ -1,0 +1,97 @@
+# Basic mkdocs configurations file.
+
+# Site.
+site_name: Git Pages Template
+site_author: "robbinparrish"
+site_description: "Git Pages Template"
+site_dir: "public"
+# site_url:
+# repo_url:
+
+# Material Theme.
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+
+# # Readthedocs Theme.
+# theme: 
+#   name: readthedocs
+
+# # Simple Blog Theme.
+# theme: 
+#    name: simple-blog
+#    components:
+#     site_name: true
+#     preview: true
+#     footer: true
+#     theme_style: light
+#     background: white
+
+# # Terminal Theme.
+# theme: terminal
+# palette: default
+   
+# Additional.
+use_directory_urls: true
+strict: true
+extra:
+  generator: false
+
+# Copyright.
+copyright: Git Pages Template
+
+# Plugins.
+plugins:
+  - search
+  - autorefs
+  - mermaid2
+  - charts
+
+# Support for Charts plugin.
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
+
+# Markdown extensions.
+markdown_extensions:
+  - footnotes
+  - pymdownx.emoji
+  - pymdownx.tasklist
+  - pymdownx.magiclink
+  - pymdownx.details
+  - plantuml_markdown:
+      # Default public plantuml server.
+      # For self hosted environment eg. GitLab `https://gitlab.mydomain.com/-/plantuml/`
+      server: https://www.plantuml.com/plantuml
+  - pymdownx.superfences:
+      # Support for charts plugins.
+      custom_fences:
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# Page navigation.
+nav:
+  - Home: ./index.md
+  - About:
+      - About Me: ./about/about-me.md
+      - About Work: ./about/work.md
+  - Developer Guide:
+      - Projects: ./dev-guide/projects.md
+      - Repositories: ./dev-guide/repositories.md
+  - User Guide:
+      - Project Setup: ./user-guide/project-setup.md

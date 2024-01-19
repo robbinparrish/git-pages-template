@@ -1,0 +1,43 @@
+{
+	"name": "git-pages-template",
+	"build": { "dockerfile": "Dockerfile" },
+
+	"customizations": {
+		"vscode": {
+			"settings": {
+					"markdown-preview-enhanced.plantumlJarPath": "/opt/plantuml/plantuml.jar"
+			},
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"yzhang.markdown-all-in-one",
+				"jebbs.plantuml",
+				"shd101wyy.markdown-preview-enhanced",
+				"redhat.vscode-yaml",
+				"bierner.markdown-mermaid"
+			]
+		}
+	},
+
+	"forwardPorts": [8000],
+	"portsAttributes": {
+		"8000": {
+			"label": "Default 'mkdocs serve' port number",
+			"onAutoForward": "notify"
+		}
+	},
+
+	"shutdownAction": "stopContainer",
+	"postCreateCommand": "poetry install && poetry run mkdocs serve",
+
+	"updateRemoteUserUID": true,
+	"containerUser": "devuser",
+	"remoteUser": "devuser",
+
+	"runArgs": [
+		"--rm",
+		"-v",
+		"${env:SSH_AUTH_SOCK}:/tmp/ssh-agent.socket",
+		"-e",
+		"SSH_AUTH_SOCK=/tmp/ssh-agent.socket"
+	]
+}

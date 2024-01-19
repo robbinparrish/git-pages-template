@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "git-pages-template"
+version = "0.1.0"
+description = "This Project contains template for hosting Git pages."
+authors = ["robbinparrish <1752658+robbinparrish@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mkdocs = "^1.5.3"
+mkdocs-terminal = "^4.4.0"
+mike = "^2.0.0"
+plantuml-markdown = "^3.9.2"
+mkdocs-mermaid2-plugin = "^1.1.1"
+mkdocs-charts-plugin = "^0.0.10"
+pymdown-extensions = "^10.7"
+matplotlib = "^3.8.2"
+mkdocs-matplotlib = "^0.10.1"
+mkdocs-monorepo-plugin = "^1.1.0"
+mkdocs-simple-blog = "^0.0.9"
+
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.4"
+mkdocs-section-index = "^0.3.8"
+mkdocs-macros-plugin = "^1.0.5"
+mkdocs-autorefs = "^0.5.0"
+mkdocstrings = "^0.24.0"
+mkdocstrings-python = "^1.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
