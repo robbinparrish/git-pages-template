@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
       - run: sudo apt-get update
       - run: sudo apt-get install -y --no-install-recommends --no-install-suggests curl wget zip unzip ca-certificates git python3-pip python3-dev
       - run: pip install poetry==1.7.1
