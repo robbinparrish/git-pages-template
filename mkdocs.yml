@@ -90,8 +90,8 @@ nav:
   - About:
       - About Me: ./about/about-me.md
       - About Work: ./about/work.md
-  - Developer Guide:
-      - Projects: ./dev-guide/projects.md
-      - Repositories: ./dev-guide/repositories.md
-  - User Guide:
-      - Project Setup: ./user-guide/project-setup.md
+  - Work:
+      - Projects: ./work/projects.md
+      - Repositories: ./work/repositories.md
+  - Projects:
+      - Project Setup: ./projects/project-setup.md

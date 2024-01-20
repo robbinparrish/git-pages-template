@@ -51,5 +51,5 @@ This required to create a tag using GitLab CI.
 These are specific to the needs.
 
 ## Interacting with GitHub CI Pipeline.
-This repository also contains a `.github/workflows` directory for building the documentation using mkdocs in GitHub actions. `Currently Not Implemented.`  
+This repository also contains a `.github/workflows` directory for building the documentation using mkdocs in GitHub actions. `Currently Not Configured for main branch.`  
 [GitHub actions](https://docs.github.com/en/actions)
