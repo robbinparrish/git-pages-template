@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: sudo apt-get update
       - run: sudo apt-get install -y --no-install-recommends --no-install-suggests curl wget zip unzip ca-certificates git python3-pip python3-dev
-      - run: pip install --break-system-packages poetry==1.7.1
+      - run: pip install poetry==1.7.1
       - run: poetry install
       - run: poetry run mkdocs gh-deploy --strict --verbose --force --clean
