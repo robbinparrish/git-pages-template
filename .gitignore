@@ -10,6 +10,11 @@
 # gitlab ci/cd specific configs.
 !.gitlab-ci.yml
 
+# GitHub specific configs.
+!.github
+!.github/workflows
+!.github/workflows/main.yml
+
 # Helper scripts specific configs.
 !helper-scripts
 !helper-scripts/generate_version_id.sh

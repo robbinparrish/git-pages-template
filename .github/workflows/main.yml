@@ -1,0 +1,16 @@
+name: deploy-git-pages-template
+on:
+  push:
+    branches:
+      - feature/learning-github-actions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: apt-get update
+      - run: apt-get install -y --no-install-recommends --no-install-suggests curl wget zip unzip ca-certificates git python3-pip python3-dev
+      - run: pip install --break-system-packages poetry==1.7.1
+      - run: poetry install
+      - run: poetry run mkdocs gh-deploy --strict --verbose --force --clean
