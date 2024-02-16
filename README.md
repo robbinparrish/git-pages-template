@@ -51,5 +51,5 @@ This required to create a tag using GitLab CI.
 These are specific to the needs.
 
 ## Interacting with GitHub CI Pipeline.
-This repository also contains a `.github/workflows` directory for building the documentation using mkdocs in GitHub actions. Deployed pages are available at [Git Pages Templates](https://robbinparrish.github.io/git-pages-templates).  
+This repository also contains a `.github/workflows` directory for building the documentation using mkdocs in GitHub actions. Deployed pages are available at [Git Pages Templates](https://robbinparrish.github.io/git-pages-template/).  
 [GitHub Actions](https://docs.github.com/en/actions)
