@@ -2,7 +2,7 @@ name: deploy-git-pages-template
 on:
   push:
     branches:
-      - feature/learning-github-actions
+      - main
 
 jobs:
   deploy:
