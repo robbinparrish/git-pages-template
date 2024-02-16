@@ -52,4 +52,4 @@ These are specific to the needs.
 
 ## Interacting with GitHub CI Pipeline.
 This repository also contains a `.github/workflows` directory for building the documentation using mkdocs in GitHub actions. Deployed pages are available at [Git Pages Templates](https://robbinparrish.github.io/git-pages-templates).  
-[GitHub actions](https://docs.github.com/en/actions)
+[GitHub Actions](https://docs.github.com/en/actions)
